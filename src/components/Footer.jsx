@@ -31,9 +31,9 @@ export default function Footer() {
         <div className="footer-section">
           <h4>Contact Us</h4>
           <ul className="contact-info">
-            <li><FaMapMarkerAlt /> 123 Coffee Street, Bean City</li>
-            <li><FaPhone /> (123) 456-7890</li>
-            <li><FaEnvelope /> contact@brewhaven.com</li>
+            <li><FaMapMarkerAlt /> Near Green Valley , Law-Gate ,Phagwara </li>
+            <li><FaPhone /> +91-9109494579</li>
+            <li><FaEnvelope /> sonusourabh2411@admin.com</li>
           </ul>
         </div>
 
