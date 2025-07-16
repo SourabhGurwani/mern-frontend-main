@@ -1,0 +1,159 @@
+/* Profile Container */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  background-color: #f9f5f0; /* Warm beige background */
+}
+
+.profile-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.profile-title {
+  color: #3E2723; /* Dark coffee brown */
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid #D7CCC8; /* Light beige */
+  padding-bottom: 1rem;
+}
+
+.profile-icon {
+  color: #8D6E63; /* Medium coffee brown */
+}
+
+/* Form Styles */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 500;
+  color: #5D4037; /* Coffee brown */
+  font-size: 0.95rem;
+}
+
+.input-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: #8D6E63;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border: 1px solid #D7CCC8;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #3E2723;
+}
+
+.input-field input:focus {
+  outline: none;
+  border-color: #8D6E63;
+  box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
+}
+
+/* Buttons */
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-save, .btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-save {
+  background-color: #5D4037; /* Coffee brown */
+  color: white;
+}
+
+.btn-save:hover {
+  background-color: #8D6E63; /* Lighter coffee */
+}
+
+.btn-save:disabled {
+  background-color: #bcaaa4; /* Muted coffee */
+  cursor: not-allowed;
+}
+
+.btn-logout {
+  background-color: #f5f5f5;
+  color: #5D4037;
+  border: 1px solid #D7CCC8;
+}
+
+.btn-logout:hover {
+  background-color: #e0e0e0;
+}
+
+/* Alerts */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.alert.error {
+  background-color: #ffebee;
+  color: #e53935;
+  border-left: 4px solid #ef4444;
+}
+
+.alert.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #22c55e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 20px;
+  }
+  
+  .profile-actions {
+    flex-direction: column;
+  }
+  
+  .btn-save, .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+}

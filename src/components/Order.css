@@ -1,0 +1,161 @@
+/* Order Container */
+.order-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.order-title {
+  font-size: 2rem;
+  color: #3E2723;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #D7CCC8;
+  padding-bottom: 1rem;
+}
+
+.error-message {
+  color: #e53935;
+  background: #ffebee;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.login-prompt {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.empty-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.empty-orders img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.empty-orders p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Order Card */
+.order-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: #f5f5f5;
+  border-bottom: 1px solid #eee;
+}
+
+.order-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.order-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.order-summary {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.order-value {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #3E2723;
+}
+
+.order-status {
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+}
+
+/* Order Table */
+.order-details {
+  padding: 1.5rem;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-table th {
+  text-align: left;
+  padding: 0.8rem;
+  background: #f9f9f9;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+}
+
+.order-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.order-table tr:last-child td {
+  border-bottom: none;
+}
+
+.order-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .order-summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .order-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
