@@ -36,9 +36,13 @@ export default function Product() {
   const scrollToProducts = () => {
     productsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+ 
 
   return (
     <div className="product-page">
+
+
+
       {/* Hero Banner */}
       <div className="hero-banner">
         <div className="banner-overlay">
