@@ -14,6 +14,7 @@ export default function Users() {
     firstName: "",
     lastName: "",
     email: "",
+    phone:"",
     password: "",
     role: "",
   });
@@ -105,6 +106,7 @@ export default function Users() {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      phone:user.phone,
       password: "",
       role: user.role,
     });
@@ -147,6 +149,7 @@ export default function Users() {
       firstName: "",
       lastName: "",
       email: "",
+      phone:"",
       password: "",
       role: "",
     });
@@ -201,6 +204,18 @@ export default function Users() {
                 value={form.email}
                 type="email"
                 placeholder="Email Address"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="input-group">
+              <label>Phone</label>
+              <input
+                name="phone"
+                value={form.phone}
+                type="text"
+                placeholder="Phone Number"
                 onChange={handleChange}
                 required
               />
@@ -298,38 +313,40 @@ export default function Users() {
               <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Phone</th>
                 <th>Role</th>
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
-              {users.map((value) => (
-                <tr key={value._id}>
-                  <td>{value.firstName} {value.lastName}</td>
-                  <td>{value.email}</td>
-                  <td>
-                    <span className={`role-badge ${value.role}`}>
-                      {value.role === 'admin' ? <FaUserShield /> : <FaUser />}
-                      {value.role}
-                    </span>
-                  </td>
-                  <td className="actions">
-                    <button 
-                      onClick={() => handleEdit(value)} 
-                      className="btn-edit"
-                    >
-                      <FaEdit /> Edit
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(value._id)} 
-                      className="btn-delete"
-                    >
-                      <FaTrash /> Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+           <tbody>
+  {users.map((value) => (
+    <tr key={value._id}>
+      <td>{value.firstName} {value.lastName}</td>
+      <td>{value.email}</td> {/* email yaha hona chahiye */}
+      <td>{value.phone}</td> {/* phone yaha hona chahiye */}
+      <td>
+        <span className={`role-badge ${value.role}`}>
+          {value.role === 'admin' ? <FaUserShield /> : <FaUser />}
+          {value.role}
+        </span>
+      </td>
+      <td className="actions">
+        <button 
+          onClick={() => handleEdit(value)} 
+          className="btn-edit"
+        >
+          <FaEdit /> Edit
+        </button>
+        <button 
+          onClick={() => handleDelete(value._id)} 
+          className="btn-delete"
+        >
+          <FaTrash /> Delete
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </table>
         )}
       </div>

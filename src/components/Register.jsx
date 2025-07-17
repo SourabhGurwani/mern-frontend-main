@@ -9,6 +9,7 @@ export default function Register() {
     firstName: "",
     lastName: "",
     email: "",
+    phone:"",
     password: ""
   });
   const [error, setError] = useState(null);
@@ -89,6 +90,17 @@ export default function Register() {
             />
           </div>
 
+ <div className="input-group">
+            <FaEnvelope className="input-icon" />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Enter phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
           <div className="input-group">
             <FaLock className="input-icon" />
             <input

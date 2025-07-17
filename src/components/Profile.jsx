@@ -26,6 +26,7 @@ export default function Profile() {
         firstName: result.data.firstName || '',
         lastName: result.data.lastName || '',
         email: result.data.email || '',
+        phone: result.data.phone || '',
         password: ''
       });
     } catch (err) {
@@ -118,6 +119,19 @@ export default function Profile() {
                 value={form.email || ''}
                 onChange={handleChange}
                 placeholder="Email Address"
+              />
+            </div>
+
+             
+            <label>Phone</label>
+            <div className="input-field">
+              <FaEnvelope className="input-icon" />
+              <input
+                name="phone"
+                type="text"
+                value={form.phone || ''}
+                onChange={handleChange}
+                placeholder="Enter phone "
               />
             </div>
           </div>
