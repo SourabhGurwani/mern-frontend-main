@@ -40,7 +40,7 @@ export default function Login() {
       <div className="login-card">
         <div className="login-header">
           <h2>Welcome Back</h2>
-          <p>Sign in to your Brew Haven account</p>
+          <p>Sign in to your SG Brews account</p>
         </div>
 
         {error && <div className="error-message">{error}</div>}

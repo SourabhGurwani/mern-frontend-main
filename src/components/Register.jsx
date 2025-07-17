@@ -44,7 +44,7 @@ export default function Register() {
       <div className="register-card">
         <div className="register-header">
           <h2>Create Your Account</h2>
-          <p>Join Brew Haven today</p>
+          <p>Join SG Brews today</p>
         </div>
 
         {error && <div className="error-message">{error}</div>}

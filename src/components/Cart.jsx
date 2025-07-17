@@ -12,9 +12,9 @@ export default function Cart() {
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const increment = (id, qty) => {
+  const increment = (id) => {
     const updatedCart = cart.map((product) =>
-      product._id === id ? { ...product, qty: qty + 1 } : product
+      product._id === id ? { ...product,qty: product.qty + 1 } : product
     );
     setCart(updatedCart);
   };

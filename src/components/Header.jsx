@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="cafe-header">
       <nav className="cafe-nav">
-        <h1 className="cafe-logo">Brew Haven</h1>
+        <h1 className="cafe-logo">SG Brews</h1>
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/cart" className="nav-link">My Cart</Link>
