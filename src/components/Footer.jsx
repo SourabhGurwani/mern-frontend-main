@@ -7,9 +7,9 @@ export default function Footer() {
     <footer className="cafe-footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3 className="footer-logo">Brew Haven</h3>
+          <h3 className="footer-logo">SG Brews</h3>
           <p className="footer-about">
-            Artisanal coffee and homemade pastries crafted with love since 2010.
+            Artisanal coffee and homemade pastries crafted.
           </p>
           <div className="social-icons">
             <a href="#" aria-label="Facebook"><FaFacebook /></a>
