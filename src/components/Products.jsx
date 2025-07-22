@@ -29,10 +29,10 @@ export default function Products() {
       const result = await axios.get(url);
       setProducts(result.data.products);
       setTotalPages(result.data.totalPages || Math.ceil(result.data.total / 10));
-      setIsLoading(false);
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Failed to fetch products");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -43,13 +43,12 @@ export default function Products() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
-    
+
     try {
       setIsLoading(true);
-      const url = `${API_URL}/api/products/${id}`;
-      await axios.delete(url);
+      await axios.delete(`${API_URL}/api/products/${id}`);
       setSuccess("Product deleted successfully");
-      fetchProducts();
+      await fetchProducts();
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Failed to delete product");
@@ -68,14 +67,14 @@ export default function Products() {
       frmRef.current.reportValidity();
       return;
     }
-    
+
     try {
       setIsLoading(true);
-      const url = `${API_URL}/api/products`;
-      await axios.post(url, form);
+      await axios.post(`${API_URL}/api/products`, form);
       setSuccess("Product added successfully");
-      fetchProducts();
       resetForm();
+      setPage(1); // Show latest product by going to page 1
+      await fetchProducts(); // Ensure fresh data is loaded
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Failed to add product");
@@ -100,15 +99,14 @@ export default function Products() {
       frmRef.current.reportValidity();
       return;
     }
-    
+
     try {
       setIsLoading(true);
-      const url = `${API_URL}/api/products/${editId}`;
-      await axios.patch(url, form);
+      await axios.patch(`${API_URL}/api/products/${editId}`, form);
       setSuccess("Product updated successfully");
-      fetchProducts();
       setEditId(null);
       resetForm();
+      await fetchProducts();
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Failed to update product");
@@ -134,13 +132,12 @@ export default function Products() {
   const handleSearch = (e) => {
     e.preventDefault();
     setPage(1);
-    fetchProducts();
   };
 
   return (
     <div className="products-container">
       <h2 className="products-title">Product Management</h2>
-      
+
       {error && <div className="error-message">{error}</div>}
       {success && <div className="success-message">{success}</div>}
 
@@ -158,7 +155,6 @@ export default function Products() {
                 required
               />
             </div>
-            
             <div className="input-group">
               <label>Price</label>
               <input
@@ -194,40 +190,25 @@ export default function Products() {
               <input
                 name="imgUrl"
                 value={form.imgUrl}
-                type=""
+                type="url"
                 placeholder="Image URL"
                 onChange={handleChange}
                 required
               />
             </div>
-            
+
             <div className="form-actions">
               {editId ? (
                 <>
-                  <button 
-                    type="button" 
-                    onClick={handleUpdate} 
-                    className="btn-update"
-                    disabled={isLoading}
-                  >
+                  <button type="button" onClick={handleUpdate} className="btn-update" disabled={isLoading}>
                     <FaCheck /> Update
                   </button>
-                  <button 
-                    type="button" 
-                    onClick={handleCancel} 
-                    className="btn-cancel"
-                    disabled={isLoading}
-                  >
+                  <button type="button" onClick={handleCancel} className="btn-cancel" disabled={isLoading}>
                     <FaTimes /> Cancel
                   </button>
                 </>
               ) : (
-                <button 
-                  type="button" 
-                  onClick={handleAdd} 
-                  className="btn-add"
-                  disabled={isLoading}
-                >
+                <button type="button" onClick={handleAdd} className="btn-add" disabled={isLoading}>
                   <FaPlus /> Add Product
                 </button>
               )}
@@ -240,15 +221,13 @@ export default function Products() {
         <form onSubmit={handleSearch} className="search-form">
           <div className="search-group">
             <FaSearch className="search-icon" />
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={searchVal}
               onChange={(e) => setSearchVal(e.target.value)}
               placeholder="Search products..."
             />
-            <button type="submit" className="btn-search">
-              Search
-            </button>
+            <button type="submit" className="btn-search">Search</button>
           </div>
         </form>
       </div>
@@ -277,24 +256,14 @@ export default function Products() {
                   <td>${parseFloat(product.price).toFixed(2)}</td>
                   <td>
                     {product.imgUrl && (
-                      <img 
-                        src={product.imgUrl} 
-                        alt={product.productName} 
-                        className="product-thumbnail"
-                      />
+                      <img src={product.imgUrl} alt={product.productName} className="product-thumbnail" />
                     )}
                   </td>
                   <td className="actions">
-                    <button 
-                      onClick={() => handleEdit(product)} 
-                      className="btn-edit"
-                    >
+                    <button onClick={() => handleEdit(product)} className="btn-edit">
                       <FaEdit /> Edit
                     </button>
-                    <button 
-                      onClick={() => handleDelete(product._id)} 
-                      className="btn-delete"
-                    >
+                    <button onClick={() => handleDelete(product._id)} className="btn-delete">
                       <FaTrash /> Delete
                     </button>
                   </td>
@@ -306,18 +275,18 @@ export default function Products() {
       </div>
 
       <div className="pagination">
-        <button 
-          onClick={() => setPage(page - 1)} 
+        <button
+          onClick={() => setPage(page - 1)}
           disabled={page === 1 || isLoading}
           className="btn-prev"
         >
           <FaArrowLeft /> Previous
         </button>
-        
+
         <span className="page-info">Page {page} of {totalPages}</span>
-        
-        <button 
-          onClick={() => setPage(page + 1)} 
+
+        <button
+          onClick={() => setPage(page + 1)}
           disabled={page >= totalPages || isLoading || products.length === 0}
           className="btn-next"
         >

@@ -22,7 +22,7 @@ export default function Product() {
   };
 
   useEffect(() => {
-    fetchProducts();
+ 
   }, []);
 
   const addToCart = (product) => {
@@ -81,12 +81,17 @@ export default function Product() {
                   >
                     Add to Cart
                   </button>
+
                 </div>
+
               </div>
             </div>
           ))}
         </div>
+
       </div>
+
+      
     </div>
   );
 }
