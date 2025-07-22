@@ -22,7 +22,7 @@ export default function Product() {
   };
 
   useEffect(() => {
- 
+    fetchProducts();
   }, []);
 
   const addToCart = (product) => {
