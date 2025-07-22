@@ -193,7 +193,7 @@ export default function Products() {
                 type="url"
                 placeholder="Image URL"
                 onChange={handleChange}
-                required
+              
               />
             </div>
 
