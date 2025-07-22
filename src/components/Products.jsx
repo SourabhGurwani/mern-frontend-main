@@ -190,7 +190,7 @@ export default function Products() {
               <input
                 name="imgUrl"
                 value={form.imgUrl}
-                type="url"
+                type="text"
                 placeholder="Image URL"
                 onChange={handleChange}
               
