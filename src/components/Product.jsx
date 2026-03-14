@@ -9,18 +9,17 @@ export default function Product() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
 
-  const { user, cart, setCart } = useContext(AppContext);
+  const { cart, setCart } = useContext(AppContext);
 
   const productsRef = useRef(null);
 
   const fetchProducts = async () => {
     try {
       setLoading(true);
-
       const url = `${API_URL}/api/products/all`;
       const result = await axios.get(url);
-
       setProducts(result.data.products || []);
     } catch (err) {
       console.log(err);
@@ -41,7 +40,14 @@ export default function Product() {
 
     if (!found) {
       setCart([...cart, { ...product, qty: 1 }]);
+      setMessage("Added to Cart ✅");
+    } else {
+      setMessage("Already in Cart ⚠️");
     }
+
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
   };
 
   const scrollToProducts = () => {
@@ -50,7 +56,14 @@ export default function Product() {
 
   return (
     <div className="product-page">
-      
+
+      {/* Success Message */}
+      {message && (
+        <div className="cart-message">
+          {message}
+        </div>
+      )}
+
       {/* Hero Banner */}
       <div className="hero-banner">
         <div className="banner-overlay">
@@ -69,34 +82,20 @@ export default function Product() {
       <div className="product-grid-container" ref={productsRef}>
         <h2 className="section-title">Our Coffee Selection</h2>
 
-        {/* Loading State */}
-        {loading && (
-          <div className="loading">
-            <h3>Loading Products...</h3>
-          </div>
-        )}
+        {loading && <h3>Loading Products...</h3>}
+        {error && <h3>{error}</h3>}
 
-        {/* Error State */}
-        {error && (
-          <div className="error">
-            <h3>{error}</h3>
-          </div>
-        )}
-
-        {/* Product Grid */}
         {!loading && !error && (
           <div className="product-grid">
             {products.map((product) => (
               <div key={product._id} className="product-card">
 
-                {/* Stock Badge */}
                 <div className="product-badge">
                   {product.stock < 5 && (
                     <span className="badge">Almost Gone!</span>
                   )}
                 </div>
 
-                {/* Product Image */}
                 <img
                   src={product.imgUrl}
                   className="product-image"
@@ -104,7 +103,6 @@ export default function Product() {
                   loading="lazy"
                 />
 
-                {/* Product Info */}
                 <div className="product-info">
                   <h3>{product.productName}</h3>
 
@@ -123,9 +121,10 @@ export default function Product() {
                     >
                       Add to Cart
                     </button>
-                  </div>
 
+                  </div>
                 </div>
+
               </div>
             ))}
           </div>
