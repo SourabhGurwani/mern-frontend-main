@@ -40,9 +40,9 @@ export default function Product() {
 
     if (!found) {
       setCart([...cart, { ...product, qty: 1 }]);
-      setMessage("Added to Cart ✅");
+      setMessage("Added to Cart ");
     } else {
-      setMessage("Already in Cart ⚠️");
+      setMessage("Already in Cart ");
     }
 
     setTimeout(() => {
