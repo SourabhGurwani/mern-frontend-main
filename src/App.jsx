@@ -1,6 +1,4 @@
-import { useState, createContext } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, createContext, useEffect } from "react";
 import Register from "./components/Register";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
@@ -13,34 +11,79 @@ import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Products from "./components/Products";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+
 export const AppContext = createContext();
+
 function App() {
+
   const [cart, setCart] = useState([]);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+
+  // Restore user after page reload
+  useEffect(() => {
+
+    const savedUser = localStorage.getItem("user");
+
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+
+  }, []);
+
   return (
+
     <div className="App-Container">
-      <AppContext.Provider value={{ cart, setCart, user, setUser }}>
+
+      <AppContext.Provider
+        value={{
+          cart,
+          setCart,
+          user,
+          setUser
+        }}
+      >
+
         <BrowserRouter>
+
           <Header />
+
           <Routes>
+
             <Route index element={<Product />} />
+
             <Route path="login" element={<Login />} />
-             <Route path="profile" element={<Profile />} />
+
+            <Route path="profile" element={<Profile />} />
+
             <Route path="register" element={<Register />} />
+
             <Route path="cart" element={<Cart />} />
+
             <Route path="order" element={<Order />} />
+
             <Route path="admin" element={<Admin />}>
+
               <Route index element={<Users />} />
+
               <Route path="products" element={<Products />} />
+
               <Route path="orders" element={<Orders />} />
+
             </Route>
+
           </Routes>
+
           <Footer />
+
         </BrowserRouter>
+
       </AppContext.Provider>
+
     </div>
+
   );
 }
+
 export default App;
