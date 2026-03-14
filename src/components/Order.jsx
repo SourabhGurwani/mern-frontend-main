@@ -21,7 +21,8 @@ export default function Order() {
 
       const result = await axios.get(url);
 
-      setOrders(result.data || []);
+      // safe response handling
+      setOrders(result.data?.orders || result.data || []);
 
     } catch (err) {
 
@@ -79,7 +80,7 @@ export default function Order() {
         </div>
       )}
 
-      {/* Loading State */}
+      {/* Loading */}
 
       {loading && (
         <div className="loading-orders">
@@ -96,7 +97,6 @@ export default function Order() {
           <img
             src="https://cdn-icons-png.flaticon.com/512/1828/1828466.png"
             alt="Login required"
-            loading="lazy"
           />
 
           <p>Please login to view your orders</p>
@@ -107,14 +107,13 @@ export default function Order() {
 
       {/* Empty Orders */}
 
-      {!loading && user?.email && orders.length === 0 && (
+      {!loading && user?.email && (!orders || orders.length === 0) && (
 
         <div className="empty-orders">
 
           <img
             src="https://cdn-icons-png.flaticon.com/512/4555/4555971.png"
             alt="No orders"
-            loading="lazy"
           />
 
           <h3>No Orders Yet</h3>
@@ -127,7 +126,7 @@ export default function Order() {
 
       {/* Orders List */}
 
-      {!loading && orders.length > 0 && (
+      {!loading && orders && orders.length > 0 && (
 
         <div className="order-list">
 
