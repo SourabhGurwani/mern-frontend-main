@@ -217,3 +217,16 @@
     text-align: left;
   }
 }
+
+.remove-btn{
+background: none;
+border: none;
+color: #ff4d4f;
+cursor: pointer;
+font-size: 14px;
+margin-top: 5px;
+}
+
+.remove-btn:hover{
+text-decoration: underline;
+}
