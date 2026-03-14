@@ -159,3 +159,29 @@
     white-space: nowrap;
   }
 }
+.empty-orders{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:60px 20px;
+min-height:50vh;
+}
+
+.empty-orders img{
+width:120px;
+margin-bottom:20px;
+opacity:0.8;
+}
+
+.empty-orders h3{
+font-size:24px;
+margin-bottom:10px;
+color:#5a2d1f;   /* matches your coffee theme */
+}
+
+.empty-orders p{
+font-size:16px;
+color:#777;
+}
