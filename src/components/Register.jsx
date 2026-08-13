@@ -26,7 +26,6 @@ export default function Register() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-
     try {
       const url = `${API_URL}/api/users/register`;
       await axios.post(url, formData);
@@ -45,81 +44,38 @@ export default function Register() {
       <div className="register-card">
         <div className="register-header">
           <h2>Create Your Account</h2>
-          <p>Join SG Brews today</p>
+          <p>Join Royal Cafe today</p>
         </div>
-
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">Registration successful! Redirecting...</div>}
-
         <form onSubmit={handleSubmit} className="register-form">
           <div className="name-fields">
             <div className="input-group">
               <FaUser className="input-icon" />
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-              />
+              <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
             </div>
-
             <div className="input-group">
               <FaUser className="input-icon" />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-              />
+              <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
             </div>
           </div>
-
           <div className="input-group">
             <FaEnvelope className="input-icon" />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+            <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
           </div>
-
- <div className="input-group">
+          <div className="input-group">
             <FaEnvelope className="input-icon" />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Enter phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="phone" placeholder="Enter phone" value={formData.phone} onChange={handleChange} required />
           </div>
           <div className="input-group">
             <FaLock className="input-icon" />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password (min 6 characters)"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              minLength="6"
-            />
+            <input type="password" name="password" placeholder="Password (min 6 characters)" value={formData.password} onChange={handleChange} required minLength="6" />
           </div>
-
           <button type="submit" className="register-btn" disabled={isLoading || success}>
             {isLoading ? 'Creating Account...' : success ? 'Success!' : 'Register'}
             {!isLoading && !success && <FaArrowRight className="btn-icon" />}
           </button>
         </form>
-
         <div className="register-footer">
           <p>Already have an account? <Link to="/login">Sign In</Link></p>
         </div>

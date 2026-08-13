@@ -1,116 +1,174 @@
-/* Admin Layout Styles */
+/* ============================================
+   ROYAL CAFE — ADMIN LAYOUT
+   Premium admin panel with gold accents
+   ============================================ */
+
+/* Admin Layout */
 .admin-layout {
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 1400px;
+  font-family: var(--font-body);
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--space-6);
   min-height: 100vh;
-  background-color: #f9f5f0; /* Warm beige background */
+  background-color: var(--rc-beige);
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* Navigation Styles */
+/* Navigation — Horizontal Pill Tabs */
 .admin-nav {
-  background: linear-gradient(135deg, #3E2723 0%, #5D4037 100%); /* Coffee gradient */
-  padding: 15px 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
+  background: linear-gradient(135deg, var(--rc-charcoal) 0%, var(--rc-charcoal-light) 100%);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-8);
   display: flex;
-  gap: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-3);
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(201, 165, 92, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Subtle gold shimmer on the nav bar */
+.admin-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rc-gold), transparent);
+  opacity: 0.5;
+}
+
+/* Nav Links — Pill Style */
 .nav-link {
-  color: #f5f5f5;
+  color: var(--rc-white);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-sm);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  background-color: rgba(201, 165, 92, 0.15);
+  color: var(--rc-gold-light);
+  transform: translateY(-1px);
 }
 
-.nav-link::before {
+/* Gold underline on hover */
+.nav-link::after {
   content: '';
   position: absolute;
-  bottom: -3px;
+  bottom: 2px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
-  height: 3px;
-  background: #D7CCC8; /* Light beige accent */
-  transition: width 0.3s ease;
-  border-radius: 3px;
+  height: 2px;
+  background: var(--rc-gold);
+  transition: width var(--transition-base);
+  border-radius: var(--radius-full);
 }
 
-.nav-link:hover::before {
-  width: 80%;
+.nav-link:hover::after {
+  width: 60%;
 }
 
-/* Active link styling */
+/* Active Link — Gold bottom border accent */
 .nav-link.active {
-  background-color: rgba(141, 110, 99, 0.3); /* Semi-transparent coffee color */
-  font-weight: 600;
+  background-color: rgba(201, 165, 92, 0.2);
+  color: var(--rc-gold);
+  font-weight: var(--fw-semibold);
+  border-bottom: 2px solid var(--rc-gold);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-.nav-link.active::before {
-  width: 80%;
-  background: #FFAB91; /* Peach accent */
+.nav-link.active::after {
+  display: none;
 }
 
-/* Content Area Styles */
+/* Content Area — Premium White Card */
 .admin-content {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f0e6e0;
+  background-color: var(--rc-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--rc-gray-200);
+  animation: fadeInUp 0.5s ease-out;
+  min-height: 60vh;
 }
 
-/* Responsive Design */
+/* Responsive — Tablet */
 @media (max-width: 992px) {
+  .admin-layout {
+    padding: var(--space-4);
+  }
+
   .admin-nav {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 15px;
+    padding: var(--space-4);
+    gap: var(--space-2);
   }
-  
+
   .nav-link {
-    padding: 8px 15px;
-    font-size: 14px;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .admin-content {
+    padding: var(--space-8);
   }
 }
 
+/* Responsive — Mobile: Tabs stack vertically */
 @media (max-width: 768px) {
   .admin-layout {
-    padding: 15px;
+    padding: var(--space-3);
   }
-  
+
   .admin-nav {
     flex-direction: column;
-    gap: 8px;
-    padding: 15px 10px;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-3);
+    border-radius: var(--radius-lg);
   }
-  
-  .admin-content {
-    padding: 20px 15px;
-  }
-  
+
   .nav-link {
     justify-content: center;
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+  }
+
+  .nav-link.active {
+    border-bottom: none;
+    border-left: 3px solid var(--rc-gold);
+    border-radius: var(--radius-md);
+  }
+
+  .admin-content {
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--radius-lg);
   }
 }
 
-/* Add this to your HTML head for Poppins font */
-/*
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-*/
+@media (max-width: 480px) {
+  .admin-layout {
+    padding: var(--space-2);
+  }
+
+  .admin-content {
+    padding: var(--space-4) var(--space-3);
+    border-radius: var(--radius-md);
+  }
+}

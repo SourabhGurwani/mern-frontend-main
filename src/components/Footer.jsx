@@ -5,21 +5,25 @@ import './Footer.css';
 export default function Footer() {
   return (
     <footer className="cafe-footer">
+      <div className="footer-glow-border" aria-hidden="true"></div>
+
       <div className="footer-container">
-        <div className="footer-section">
-          <h3 className="footer-logo">SG Brews</h3>
+        {/* Brand Section */}
+        <div className="footer-section footer-brand">
+          <h3 className="footer-logo">Royal Cafe</h3>
           <p className="footer-about">
-            Artisanal coffee and homemade pastries crafted.
+            Crafting premium beverages and culinary delights with authentic Indian flavors. Every cup tells a story of tradition and excellence.
           </p>
           <div className="social-icons">
-            <a href="#" aria-label="Facebook"><FaFacebook /></a>
-            <a href="#" aria-label="Instagram"><FaInstagram /></a>
-            <a href="#" aria-label="Twitter"><FaTwitter /></a>
+            <a href="#" aria-label="Facebook" className="social-link"><FaFacebook /></a>
+            <a href="#" aria-label="Instagram" className="social-link"><FaInstagram /></a>
+            <a href="#" aria-label="Twitter" className="social-link"><FaTwitter /></a>
           </div>
         </div>
 
+        {/* Quick Links */}
         <div className="footer-section">
-          <h4>Quick Links</h4>
+          <h4 className="footer-heading">Quick Links</h4>
           <ul className="footer-links">
             <li><a href="/">Home</a></li>
             <li><a href="/products">Menu</a></li>
@@ -28,27 +32,47 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Contact */}
         <div className="footer-section">
-          <h4>Contact Us</h4>
+          <h4 className="footer-heading">Contact Us</h4>
           <ul className="contact-info">
-            <li><FaMapMarkerAlt /> Near Green Valley , Law-Gate ,Phagwara </li>
-            <li><FaPhone /> +91-9109494579</li>
-            <li><FaEnvelope /> sonusourabh2411@admin.com</li>
+            <li>
+              <FaMapMarkerAlt className="contact-icon" />
+              <span>Royal Cafe, MG Road, Connaught Place, New Delhi - 110001</span>
+            </li>
+            <li>
+              <FaPhone className="contact-icon" />
+              <span>+91 11 4567 8900</span>
+            </li>
+            <li>
+              <FaEnvelope className="contact-icon" />
+              <span>hello@royalcafe.in</span>
+            </li>
           </ul>
         </div>
 
+        {/* Hours */}
         <div className="footer-section">
-          <h4>Opening Hours</h4>
+          <h4 className="footer-heading">Opening Hours</h4>
           <ul className="opening-hours">
-            <li>Monday - Friday: 7am - 8pm</li>
-            <li>Saturday: 8am - 9pm</li>
-            <li>Sunday: 8am - 6pm</li>
+            <li>
+              <span className="day">Monday – Friday</span>
+              <span className="time">7 am – 8 pm</span>
+            </li>
+            <li>
+              <span className="day">Saturday</span>
+              <span className="time">8 am – 9 pm</span>
+            </li>
+            <li>
+              <span className="day">Sunday</span>
+              <span className="time">8 am – 6 pm</span>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} SG Brews. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Royal Cafe. All rights reserved.</p>
       </div>
     </footer>
   );

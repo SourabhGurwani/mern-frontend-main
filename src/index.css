@@ -1,3 +1,373 @@
-* {
-    margin: 0px
+/* ============================================
+   ROYAL CAFE — DESIGN SYSTEM & GLOBAL RESET
+   ============================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Primary Palette — Indian Premium Cafe */
+  --rc-charcoal: #1a1a2e;
+  --rc-charcoal-light: #24243e;
+  --rc-cream: #faf6f0;
+  --rc-cream-dark: #f0e6d8;
+  --rc-gold: #c9a55c;
+  --rc-gold-light: #d4b76a;
+  --rc-gold-dark: #a8893d;
+  --rc-saffron: #e67e22;
+  --rc-saffron-light: #f39c12;
+  --rc-copper: #b87333;
+
+  /* Brown Spectrum */
+  --rc-espresso: #1c0f08;
+  --rc-brown-dark: #2c1810;
+  --rc-brown-medium: #5d3a1a;
+  --rc-brown-light: #8b6914;
+  --rc-brown-muted: #6d4c41;
+  --rc-latte: #a1887f;
+  --rc-beige: #f5ebe0;
+  --rc-beige-dark: #e8d5c4;
+
+  /* Neutrals */
+  --rc-white: #ffffff;
+  --rc-gray-50: #fafafa;
+  --rc-gray-100: #f5f5f5;
+  --rc-gray-200: #eeeeee;
+  --rc-gray-300: #e0e0e0;
+  --rc-gray-400: #bdbdbd;
+  --rc-gray-500: #9e9e9e;
+  --rc-gray-600: #757575;
+  --rc-gray-700: #616161;
+  --rc-gray-800: #424242;
+  --rc-gray-900: #212121;
+  --rc-black: #0a0a0a;
+
+  /* Semantic Colors */
+  --rc-success: #2e7d32;
+  --rc-success-bg: #e8f5e9;
+  --rc-error: #c62828;
+  --rc-error-bg: #ffebee;
+  --rc-warning: #ef6c00;
+  --rc-warning-bg: #fff3e0;
+  --rc-info: #1565c0;
+  --rc-info-bg: #e3f2fd;
+
+  /* Typography */
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-body: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-accent: 'Dancing Script', cursive;
+
+  /* Font Sizes — Modular Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.75rem;
+  --text-6xl: 4.5rem;
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+  --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.2);
+  --shadow-gold: 0 4px 20px rgba(201, 165, 92, 0.25);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+  /* Glass Effects */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-light-bg: rgba(255, 255, 255, 0.85);
+  --glass-light-border: rgba(255, 255, 255, 0.5);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.15s var(--ease-out);
+  --transition-base: 0.3s var(--ease-out);
+  --transition-slow: 0.5s var(--ease-out);
+
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-overlay: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+
+  /* Layout */
+  --max-width: 1400px;
+  --header-height: 72px;
+  --z-header: 300;
+}
+
+/* ---------- CSS Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--rc-gray-800);
+  background:
+    radial-gradient(circle at top left, rgba(201, 165, 92, 0.16), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(230, 126, 34, 0.12), transparent 28%),
+    var(--rc-cream);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rc-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rc-latte);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rc-brown-muted);
+}
+
+/* Focus Styles for Accessibility */
+:focus-visible {
+  outline: 2px solid var(--rc-gold);
+  outline-offset: 2px;
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  color: var(--rc-brown-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: var(--text-base);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+/* Selection Highlight */
+::selection {
+  background-color: var(--rc-gold);
+  color: var(--rc-white);
+}
+
+/* ---------- Reusable Keyframe Animations ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 165, 92, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(201, 165, 92, 0);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(201, 165, 92, 0.3);
+  }
+  50% {
+    border-color: rgba(201, 165, 92, 0.8);
+  }
+}
+
+/* ---------- Utility Classes ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

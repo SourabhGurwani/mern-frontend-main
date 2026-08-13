@@ -1,117 +1,333 @@
-/* Footer Styles */
+/* ============================================
+   FOOTER — Royal Cafe Premium Footer
+   ============================================ */
+
 .cafe-footer {
-  background-color: #3E2723;
-  color: #D7CCC8;
-  padding: 3rem 0 0;
-  margin-top: 4rem;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.footer-section {
-  margin-bottom: 2rem;
-}
-
-.footer-logo {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
-  color: #D7CCC8;
-  margin-bottom: 1rem;
-}
-
-.footer-about {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.social-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icons a {
-  color: #D7CCC8;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: #FFAB91;
-}
-
-.footer-section h4 {
-  color: #FFAB91;
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
   position: relative;
-  padding-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--rc-charcoal) 0%, var(--rc-brown-dark) 100%);
+  color: var(--rc-cream);
+  overflow: hidden;
 }
 
-.footer-section h4::after {
+.cafe-footer::before {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50px;
-  height: 2px;
-  background: #8D6E63;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(201, 165, 92, 0.16), transparent 32%);
+  pointer-events: none;
 }
 
-.footer-links li,
-.contact-info li,
-.opening-hours li {
-  margin-bottom: 0.8rem;
+/* --- Gold Gradient Top Border --- */
+.footer-glow-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--rc-gold) 20%,
+    var(--rc-saffron) 50%,
+    var(--rc-gold) 80%,
+    transparent
+  );
+}
+
+/* --- Container Grid --- */
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6) var(--space-10);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-10);
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Sections (fade-in) --- */
+.footer-section {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.footer-section:nth-child(1) { animation-delay: 0.05s; }
+.footer-section:nth-child(2) { animation-delay: 0.15s; }
+.footer-section:nth-child(3) { animation-delay: 0.25s; }
+.footer-section:nth-child(4) { animation-delay: 0.35s; }
+
+/* --- Logo --- */
+.footer-logo {
+  font-family: var(--font-accent);
+  font-size: var(--text-3xl);
+  color: var(--rc-gold);
+  margin: 0 0 var(--space-4);
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--rc-gold), var(--rc-saffron));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- About Text --- */
+.footer-about {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.75;
+  color: var(--rc-gray-400);
+  margin: 0 0 var(--space-6);
+}
+
+/* --- Section Headings --- */
+.footer-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--rc-gold);
+  margin: 0 0 var(--space-5);
+  padding-bottom: var(--space-3);
+  position: relative;
+}
+
+.footer-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rc-gold), var(--rc-saffron));
+  border-radius: var(--radius-full);
+}
+
+/* --- Social Icons --- */
+.social-icons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--rc-cream);
+  font-size: var(--text-base);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: background var(--transition-fast),
+              color var(--transition-fast),
+              box-shadow var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.social-link:hover {
+  background: var(--rc-gold);
+  color: var(--rc-charcoal);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+  transform: translateY(-2px);
+}
+
+/* --- Footer Links --- */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: var(--rc-gray-400);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  transition: color var(--transition-fast),
+              padding-left var(--transition-fast);
+  position: relative;
+}
+
+.footer-links li a::before {
+  content: "›";
+  position: absolute;
+  left: -14px;
+  opacity: 0;
+  color: var(--rc-gold);
+  font-weight: 700;
+  transition: opacity var(--transition-fast),
+              left var(--transition-fast);
+}
+
+.footer-links li a:hover {
+  color: var(--rc-gold);
+  padding-left: var(--space-3);
+}
+
+.footer-links li a:hover::before {
+  opacity: 1;
+  left: -4px;
+}
+
+/* --- Contact Info --- */
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--rc-gray-400);
   line-height: 1.6;
 }
 
-.footer-links a,
-.contact-info a {
-  color: #D7CCC8;
-  transition: color 0.3s ease;
+.contact-icon {
+  color: var(--rc-gold);
+  font-size: var(--text-base);
+  margin-top: 3px;
+  flex-shrink: 0;
 }
 
-.footer-links a:hover,
-.contact-info a:hover {
-  color: #FFAB91;
+/* --- Opening Hours --- */
+.opening-hours {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.contact-info svg,
-.opening-hours svg {
-  margin-right: 0.5rem;
-  color: #8D6E63;
+.opening-hours li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--rc-gray-400);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.opening-hours li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.opening-hours .day {
+  font-weight: 500;
+  color: var(--rc-cream);
+}
+
+.opening-hours .time {
+  color: var(--rc-gold);
+  font-weight: 500;
+}
+
+/* --- Footer Bottom --- */
 .footer-bottom {
-  background-color: #2c1915;
-  padding: 1.5rem 0;
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-5) var(--space-6);
   text-align: center;
-  border-top: 1px solid #5D4037;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .footer-bottom p {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--rc-gray-500);
   margin: 0;
-  font-size: 0.9rem;
+  letter-spacing: 0.5px;
 }
 
-/* Responsive Design */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
   .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    padding: var(--space-10) var(--space-5) var(--space-8);
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .footer-brand .social-icons {
+    justify-content: center;
+  }
+
+  .footer-brand .footer-about {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-6);
+  }
+
+  .footer-heading::after {
+    /* Keep left-aligned for non-brand sections */
+  }
+
+  .opening-hours li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-4) var(--space-6);
   }
-  
+
   .footer-section {
-    margin-bottom: 1.5rem;
+    text-align: center;
   }
-  
-  .footer-section h4 {
-    margin-bottom: 1rem;
+
+  .footer-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .footer-links li a:hover {
+    padding-left: 0;
+  }
+
+  .footer-links li a::before {
+    display: none;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .contact-info li {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .opening-hours li {
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-size: var(--text-2xl);
   }
 }

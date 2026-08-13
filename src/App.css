@@ -1,3 +1,42 @@
-.App-Container{
-    background-color: #eeeeee;
+/* ============================================
+   ROYAL CAFE — App Container
+   ============================================ */
+
+.App-Container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, rgba(250, 246, 240, 0.98) 0%, rgba(244, 235, 221, 0.98) 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle Indian-inspired geometric pattern overlay */
+.App-Container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle at 20% 20%, var(--rc-gold) 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, var(--rc-saffron) 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, var(--rc-gold) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+
+.App-Container::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(120deg, rgba(201, 165, 92, 0.04), transparent 40%, rgba(230, 126, 34, 0.04));
+}
+
+/* Ensure content sits above the pattern */
+.App-Container > * {
+  position: relative;
+  z-index: var(--z-base);
 }

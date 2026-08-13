@@ -40,9 +40,9 @@ export default function Product() {
 
     if (!found) {
       setCart([...cart, { ...product, qty: 1 }]);
-      setMessage("Added to Cart ");
+      setMessage("Added to Cart");
     } else {
-      setMessage("Already in Cart ");
+      setMessage("Already in Cart");
     }
 
     setTimeout(() => {
@@ -68,8 +68,9 @@ export default function Product() {
       <div className="hero-banner">
         <div className="banner-overlay">
           <div className="banner-content">
-            <h1>Artisan Coffee Experience</h1>
-            <p>Discover our premium selection of handcrafted blends</p>
+            <div className="hero-badge">Authentic Indian Café</div>
+            <h1>Experience the Royal Taste of India</h1>
+            <p>Handcrafted beverages & culinary delights, served with tradition</p>
 
             <button className="explore-btn" onClick={scrollToProducts}>
               Explore Menu
@@ -80,28 +81,57 @@ export default function Product() {
 
       {/* Products Section */}
       <div className="product-grid-container" ref={productsRef}>
-        <h2 className="section-title">Our Coffee Selection</h2>
+        <h2 className="section-title">Our Curated Menu</h2>
+        <div className="section-intro">
+          <p>From rich masala chai to signature sweets and comfort bites, every item is crafted to feel warm, indulgent, and memorable.</p>
+          <div className="feature-pills">
+            <span className="feature-pill">Freshly prepared</span>
+            <span className="feature-pill">Premium ingredients</span>
+            <span className="feature-pill">Fast service</span>
+          </div>
+        </div>
 
-        {loading && <h3>Loading Products...</h3>}
         {error && <h3>{error}</h3>}
 
-        {!loading && !error && (
+        {loading ? (
           <div className="product-grid">
-            {products.map((product) => (
-              <div key={product._id} className="product-card">
-
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="product-card skeleton-card">
+                <div className="skeleton-image"></div>
+                <div className="skeleton-info">
+                  <div className="skeleton-line title"></div>
+                  <div className="skeleton-line desc"></div>
+                  <div className="skeleton-line desc-short"></div>
+                  <div className="skeleton-footer">
+                    <div className="skeleton-line price"></div>
+                    <div className="skeleton-line button"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="product-grid">
+            {products.map((product, index) => (
+              <div 
+                key={product._id} 
+                className="product-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="product-badge">
                   {product.stock < 5 && (
                     <span className="badge">Almost Gone!</span>
                   )}
                 </div>
 
-                <img
-                  src={product.imgUrl}
-                  className="product-image"
-                  alt={product.productName}
-                  loading="lazy"
-                />
+                <div className="product-image-container">
+                  <img
+                    src={product.imgUrl}
+                    className="product-image"
+                    alt={product.productName}
+                    loading="lazy"
+                  />
+                </div>
 
                 <div className="product-info">
                   <h3>{product.productName}</h3>
@@ -112,7 +142,7 @@ export default function Product() {
 
                   <div className="product-footer">
                     <span className="price">
-                      ${product.price}
+                      ₹{product.price}
                     </span>
 
                     <button
@@ -121,10 +151,8 @@ export default function Product() {
                     >
                       Add to Cart
                     </button>
-
                   </div>
                 </div>
-
               </div>
             ))}
           </div>
